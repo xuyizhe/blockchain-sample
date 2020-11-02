@@ -1,8 +1,18 @@
-#[derive(Debug)]
-pub struct Transaction(pub String);
+use std::ops::Deref;
 
-impl Transaction {
-    pub fn as_bytes(&self) -> &[u8] {
-        self.0.as_bytes()
+#[derive(Debug)]
+pub struct Transaction<T = String>(pub T);
+
+impl<T> Transaction<T> {
+    pub fn new(x: T) -> Transaction<T> {
+        Transaction(x)
+    }
+}
+
+impl<T> Deref for Transaction<T> {
+    type Target = T;
+
+    fn deref(&self) -> &T {
+        &self.0
     }
 }

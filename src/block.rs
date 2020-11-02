@@ -4,7 +4,6 @@ use crate::utils;
 
 use std::convert::TryInto;
 use std::fmt;
-use std::{u32, u64};
 
 #[derive(Debug)]
 pub struct Block {
