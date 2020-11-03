@@ -1,6 +1,7 @@
+use serde::{Deserialize, Serialize};
 use std::ops::Deref;
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Transaction<T = String>(pub T);
 
 impl<T> Transaction<T> {

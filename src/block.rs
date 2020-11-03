@@ -2,10 +2,11 @@ use crate::pow::Pow;
 use crate::transaction::Transaction;
 use crate::utils;
 
+use serde::{Deserialize, Serialize};
 use std::convert::TryInto;
 use std::fmt;
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Block {
     pub timestamp: u64,
     pub prev_block_hash: [u8; 32],
@@ -62,9 +63,9 @@ impl fmt::Display for Block {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "hash: {}\nprev: {}\ntimestamp: {}\nbits: {}\nheight: {}\nnonce: {}",
-            utils::from_be_bytes(&self.hash),
+            "prev: {}\nhash: {}\ntimestamp: {}\nbits: {}\nheight: {}\nnonce: {}",
             utils::from_be_bytes(&self.prev_block_hash),
+            utils::from_be_bytes(&self.hash),
             self.timestamp,
             self.bits,
             self.height,
